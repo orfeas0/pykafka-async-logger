@@ -13,6 +13,7 @@ class KafkaHandler(logging.Handler):
         logging.Handler.__init__(self)
         # Backup log file for errors
         self.fail_fh = open(backup_file, 'w')
+        self.batch_size = batch_size
         kafka_client = KafkaClient(hosts_list)
         topic = kafka_client.topics[topic]
         self.key = bytes(str(socket.gethostname()))
